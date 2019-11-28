@@ -1,0 +1,48 @@
+{
+  "name": "category-api-v2",
+  "version": "1.0.0",
+  "description": "dựng lại cấu trúc api theo restfull",
+  "main": "index.js",
+  "module": "main.js",
+  "scripts": {
+    "postinstall": "link-module-alias",
+    "dev": "pm2-dev index.js -- --color",
+    "start": "NODE_ENV=production node index.js"
+  },
+  "license": "MIT",
+  "author": "Thảo Mai",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "chalk": "^3.0.0",
+    "chalk-console": "^1.1.0",
+    "console-group": "^0.3.3",
+    "dotenv": "^8.2.0",
+    "esm": "^3.2.25",
+    "joi": "^14.3.1",
+    "lodash": "^4.17.15",
+    "moment": "^2.24.0",
+    "mongoose": "^5.7.12",
+    "restify": "^8.4.0",
+    "restify-cors-middleware": "^1.1.1",
+    "restify-errors": "^8.0.1",
+    "restify-joi-middleware": "^5.0.1",
+    "restify-logger": "^2.0.1"
+  },
+  "devDependencies": {
+    "@unibeautify/beautifier-eslint": "^0.6.0",
+    "@unibeautify/beautifier-js-beautify": "^0.4.0",
+    "eslint": "^6.7.1",
+    "js-beautify": "^1.10.2",
+    "link-module-alias": "^1.2.0",
+    "nodemon": "^1.19.4",
+    "unibeautify": "^0.17.0"
+  },
+  "_moduleAliases": {
+    "~root": ".",
+    "~models": "./src/models",
+    "~routes": "./src/routes",
+    "~middleware": "./src/middleware",
+    "~constants": "./src/constants",
+    "~api": "./src/api"
+  }
+}
