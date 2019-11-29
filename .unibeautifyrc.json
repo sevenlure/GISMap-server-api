@@ -1,8 +1,7 @@
 {
   "JavaScript": {
     "beautifiers": [
-      "JS-Beautify",
-      "ESLint"
+      "ESLint", "Pretty Diff", "JS-Beautify"
     ],
     "remove_trailing_whitespace": false,
     "space_after_anon_function": false,
@@ -10,9 +9,17 @@
     "space_in_paren": false,
     "force_indentation": false,
     "arrow_parens": "as-needed",
-    "break_chained_methods": false,
     "indent_size": 2,
-    "space_before_conditional": true,
-    "object_curly_spacing": true
+    "indent_char": " ",
+    "space_before_conditional": false,
+    "object_curly_spacing": true,
+    "quotes": "single",
+    "break_chained_methods": false,
+    "pragma_insert": false,
+    "pragma_require": false,
+    "wrap_line_length": 120,
+    "brace_style": "collapse",
+    "indent_chained_methods": true,
+    "indent_style": "space"
   }
 }

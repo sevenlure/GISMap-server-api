@@ -6,7 +6,7 @@
  ## Format code
  - Unibeauti
 
-# Feature
+# Library
  - esm
  - restify
 
