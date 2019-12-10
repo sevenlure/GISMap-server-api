@@ -4,7 +4,8 @@
 # Editor
  - VSCode
  ## Format code
- - Unibeauti
+ - Prettier
+ - Eslint
 
 # Library
  - esm
