@@ -1,5 +1,5 @@
 # Giới thiệu
- - Đây là API đuợc viết lại cấu trúc.
+ - Đây là Restful API cung cấp các api cho Map Analytics data sử dụng
 
 # Editor
  - VSCode
@@ -10,9 +10,3 @@
 # Library
  - esm
  - restify
-
-
-```json
-  // user setting
-  "javascript.validate.enable": false,
-```
