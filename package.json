@@ -1,5 +1,5 @@
 {
-  "name": "category-api-v2",
+  "name": "resful-api",
   "version": "1.0.0",
   "description": "dựng lại cấu trúc api theo restfull",
   "main": "index.js",
@@ -12,8 +12,9 @@
   "license": "MIT",
   "author": "Thảo Mai",
   "dependencies": {
+    "@types/joi": "^14.3.4",
+    "@types/mongoose": "^5.5.34",
     "axios": "^0.19.0",
-    "cache-manager": "^2.10.1",
     "chalk": "^3.0.0",
     "chalk-console": "^1.1.0",
     "console-group": "^0.3.3",
@@ -47,13 +48,12 @@
     "eslint-plugin-standard": "^4.0.1",
     "link-module-alias": "^1.2.0",
     "nodemon": "^1.19.4",
-    "prettier": "^1.18.2"
+    "prettier": "1.19.1"
   },
   "_moduleAliases": {
     "~root": ".",
     "~models": "./src/models",
     "~routes": "./src/routes",
-    "~middleware": "./src/middleware",
     "~constants": "./src/constants"
   }
 }

@@ -1,15 +1,19 @@
-import restify from 'restify'
-import corsMiddleware from 'restify-cors-middleware'
-import * as _ from 'lodash'
+// ESM syntax is supported.
 import console from 'chalk-console'
-import validator from 'restify-joi-middleware'
-import errors from 'restify-errors'
+import * as _ from 'lodash'
 import mongoose from 'mongoose'
 import NodeCache from 'node-cache'
+import restify from 'restify'
+import corsMiddleware from 'restify-cors-middleware'
+import errors from 'restify-errors'
+import validator from 'restify-joi-middleware'
 
-import { PORT, MONGO_OPTIONS } from './configSys'
-import loggerMiddleware from './loggerMiddleware'
 import layerRoute from '~routes/layerRoute'
+import { MONGO_OPTIONS, PORT } from './configSys'
+import loggerMiddleware from './loggerMiddleware'
+
+
+
 
 const _cache = new NodeCache({ stdTTL: 500, checkperiod: 30 })
 require('console-group').install()
@@ -18,7 +22,7 @@ var server = restify.createServer({
   name: 'restfull api',
   version: '0.0.1',
   formatters: {
-    'application/json': function(req, res, payload) {
+    'application/json': function (req, res, payload) {
       // in formatters, body is the object passed to res.send() NOTE  read: https://github.com/restify/errors/pull/87
       if (payload instanceof Error) {
         const error = payload.body
@@ -114,5 +118,6 @@ db.once('open', () => {
 
     // MARK  routes
     layerRoute.applyRoutes(server, '/layer')
+
   })
 })
