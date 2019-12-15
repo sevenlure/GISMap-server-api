@@ -45,7 +45,7 @@ _layerRoute.get({
     let payload = global._cache.get(key_cache)
     if (payload == undefined) {
       payload = {
-        UNCATEGORIZED_MARKERS: await Layer_Marker_GeneralModel.find({
+        "GENERAL/UNCATEGORIZED_MARKERS": await Layer_Marker_GeneralModel.find({
           "properties.Key": "GENERAL/UNCATEGORIZED_MARKERS"
         }).countDocuments()
       }
