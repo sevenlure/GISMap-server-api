@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: 'GISMap-API',
+      name: 'Resful-API',
       script: './index.js',
       args: ['--color', '-r esm'],
       env: {
