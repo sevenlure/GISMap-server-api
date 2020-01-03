@@ -50,7 +50,7 @@ const _keyGeneral = {
     name: 'Uncategorized'
   }
 }
-
+export const _keyObjArr = _.toArray(_keyGeneral)
 export const _keyArr = _.map(_keyGeneral, 'key')
 
 export default _keyGeneral

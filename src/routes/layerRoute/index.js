@@ -76,23 +76,26 @@ _layerRoute.get(
       query: Joi.object().keys({
         key: Joi.string().required().valid([
           ...KEY_GENERAL_LAYERS
-        ])
+        ]),
+        idsHanhChinh: Joi.array().items(Joi.string())
       }).required()
     }
     }
   },
   async (req, res, next) => {
     try {
-      const { key } = req.query;
-      const key_cache = `/marker-general/getall_${key}`;
+      const { key, idsHanhChinh = [] } = req.query;
+      // const key_cache = `/marker-general/getall_${key}`;
 
-      let payload = global._cache.get(key_cache);
-      if (payload == undefined) {
-        payload = await Layer_Marker_GeneralModel.find({
-          "properties.Key": key
-        });
-        global._cache.set(key_cache, payload);
-      }
+      let payload = await Layer_Marker_GeneralModel.find({
+        "properties.Key": key,
+        $or: [
+          { "properties.MaTP": { $in: idsHanhChinh } },
+          { "properties.MaQH": { $in: idsHanhChinh } },
+          { "properties.MaPX": { $in: idsHanhChinh } }
+        ]
+      });
+
       res.json(payload);
 
       next();
