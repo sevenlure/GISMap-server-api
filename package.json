@@ -21,9 +21,11 @@
     "dotenv": "^8.2.0",
     "esm": "^3.2.25",
     "joi": "^14.3.1",
+    "joi-objectid": "^3.0.1",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "mongoose": "^5.7.12",
+    "mongoose-relationship": "^0.1.5",
     "node-cache": "^5.1.0",
     "restify": "^8.4.0",
     "restify-cors-middleware": "^1.1.1",
@@ -39,6 +41,7 @@
     "~root": ".",
     "~models": "./src/models",
     "~routes": "./src/routes",
-    "~constants": "./src/constants"
+    "~constants": "./src/constants",
+    "~utils": "./src/utils"
   }
 }
