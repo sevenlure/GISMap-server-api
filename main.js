@@ -8,7 +8,9 @@ import corsMiddleware from "restify-cors-middleware";
 import errors from "restify-errors";
 import validator from "restify-joi-middleware";
 
-import _adminroleRoute from "~routes/adminRoute/roleRoute";
+import _adminAuthRoute from "~routes/adminRoute/authRoute";
+import _adminRoleRoute from "~routes/adminRoute/roleRoute";
+import _adminUserAdminRoute from "~routes/adminRoute/userAdminRoute";
 import _layerRoute from "~routes/layerRoute";
 import { MONGO_OPTIONS, PORT } from "./configSys";
 import loggerMiddleware from "./loggerMiddleware";
@@ -115,7 +117,9 @@ db.once("open", () => {
     });
 
     // MARK  routes
-    _adminroleRoute.applyRoutes(server, "/admin/role");
+    _adminAuthRoute.applyRoutes(server, "/admin/auth");
+    _adminRoleRoute.applyRoutes(server, "/admin/role");
+    _adminUserAdminRoute.applyRoutes(server, "/admin/userAdmin");
     _layerRoute.applyRoutes(server, "/layer");
   });
 });

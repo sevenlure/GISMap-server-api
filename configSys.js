@@ -3,6 +3,8 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 export const PORT = 3405
+export const JWT_SECRET = 'JWT_SECRET'
+export const JWT_SECRET_ADMIN = 'JWT_SECRET_ADMIN'
 
 // prettier-ignore
 export const MONGO_OPTIONS = {

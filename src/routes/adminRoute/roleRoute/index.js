@@ -11,6 +11,8 @@ import { getListWithPagination, getAll, getBy_id, updateBy_id, deleteBy_id } fro
 Joi.objectId = joiObjectid(Joi)
 const _roleRoute = new Router()
 
+getListWithPagination(_roleRoute, { path: '' }, RoleModel)
+
 getBy_id(_roleRoute, { path: `/:_id` }, RoleModel)
 
 /* #region  getALL */
@@ -20,7 +22,6 @@ _roleRoute.get(
   },
   async (req, res, next) => {
     try {
-      console.log('aaa')
       let data = await RoleModel.find().sort({ CreatedAt: -1 })
 
       res.json(data)
