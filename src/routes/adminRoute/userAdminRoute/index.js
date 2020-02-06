@@ -7,10 +7,12 @@ import joiObjectid from 'joi-objectid'
 
 import UserAdminModel from '~models/UserAdmin'
 import { getListWithPagination, getAll, getBy_id, updateBy_id, deleteBy_id } from '../base'
+import authenAdminMiddleware from '~middlewares/authenAdmin'
 
 Joi.objectId = joiObjectid(Joi)
 const _userAdminRoute = new Router()
 
+_userAdminRoute.use(authenAdminMiddleware)
 getListWithPagination(_userAdminRoute, { path: '' }, UserAdminModel)
 
 getBy_id(_userAdminRoute, { path: `/:_id` }, UserAdminModel)

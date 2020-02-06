@@ -52,6 +52,11 @@ _authRoute.post(
       let token = jwt.sign(user, JWT_SECRET_ADMIN, {
         // expiresIn: '2h' // token expires in 2h
       })
+      await UserAdminModel.findByIdAndUpdate(user._id, {
+        $set: {
+          TokenLast: token
+        }
+      })
 
       // // retrieve issue and expiration times
       let { iat, exp } = jwt.decode(token)

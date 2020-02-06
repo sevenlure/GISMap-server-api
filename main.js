@@ -14,6 +14,7 @@ import _adminUserAdminRoute from '~routes/adminRoute/userAdminRoute'
 import _layerRoute from '~routes/layerRoute'
 import { MONGO_OPTIONS, PORT } from './configSys'
 import loggerMiddleware from './loggerMiddleware'
+import UserAdminModel from '~models/UserAdmin'
 
 const _cache = new NodeCache({ stdTTL: 500, checkperiod: 30 })
 require('console-group').install()
@@ -109,7 +110,7 @@ db.once('open', () => {
   console.yellow(`connected ${MONGO_OPTIONS.uri} succsesfull`)
 
   // NOTE  start
-  server.listen(PORT, () => {
+  server.listen(PORT, async () => {
     console.blue(`Server is listening on port ${PORT}`)
 
     server.get('/', (req, res) => {
@@ -121,5 +122,13 @@ db.once('open', () => {
     _adminRoleRoute.applyRoutes(server, '/admin/role')
     _adminUserAdminRoute.applyRoutes(server, '/admin/userAdmin')
     _layerRoute.applyRoutes(server, '/layer')
+
+    // MARK  loadCache
+    const KEY_CACHE_FORCE_LOGOUT = 'FORCE_LOGOUT'
+    const usersIsForceLogout = await UserAdminModel.find({ isForceLogout: true })
+    if (usersIsForceLogout) {
+      const tokens = usersIsForceLogout.filter(item => item.TokenLast != null).map(item => item.TokenLast)
+      global._cache.set(KEY_CACHE_FORCE_LOGOUT, tokens)
+    }
   })
 })

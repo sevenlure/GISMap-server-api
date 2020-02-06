@@ -23,7 +23,8 @@ const UserAdminSchema = new mongoose.Schema(
     IsDisabled: { type: Boolean, default: false },
     Role: { type: Schema.ObjectId, ref: 'RoleModel', autopopulate: { maxDepth: 2 } },
 
-    TokenLast: Object,
+    isForceLogout: { type: Boolean, default: false },
+    TokenLast: String,
     TokenDevice: String,
     CreatedBy: String,
     UpdatedBy: String
@@ -41,9 +42,11 @@ UserAdminSchema.statics.authenticate = async function(email, password) {
   let isAuthenticated = await bcrypt.compareSync(password, user.Password)
   if (!isAuthenticated) return false
 
+  user.isForceLogout = false
+  await user.save()
   let data = user.toJSON()
 
-  return _.omit(data, 'Password')
+  return _.pick(data, ['_id', 'Email', 'FullName', 'Role'])
 }
 UserAdminSchema.statics.getListWithPagination = getListWithPagination
 

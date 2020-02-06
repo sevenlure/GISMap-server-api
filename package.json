@@ -47,6 +47,7 @@
     "~models": "./src/models",
     "~routes": "./src/routes",
     "~constants": "./src/constants",
+    "~middlewares": "./src/middlewares",
     "~utils": "./src/utils"
   }
 }

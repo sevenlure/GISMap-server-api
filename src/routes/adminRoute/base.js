@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 import Joi from 'joi'
 import errors from 'restify-errors'
-import * as _ from "lodash";
+import * as _ from 'lodash'
 Joi.objectId = require('joi-objectid')(Joi)
 import { removeUnicodeText } from '~utils/funcUtil'
 
@@ -99,7 +99,7 @@ export async function getBy_id(router, { path, validationOp }, ModelTarget = mon
 
 export async function updateBy_id(
   router,
-  { path, validationOp, omitFieldUpdate = [], hookBeforeSave },
+  { path, validationOp, omitFieldUpdate = [], hookBeforeSave, hookAfterSave },
   ModelTarget = mongoose.model()
 ) {
   // prettier-ignore
@@ -137,6 +137,7 @@ export async function updateBy_id(
         obj.UpdatedBy = req.user ? req.user.Email : undefined
         if (hookBeforeSave) await hookBeforeSave(req, res)
         await obj.save()
+        if (hookAfterSave) await hookAfterSave(obj)
 
         res.json(obj)
 
