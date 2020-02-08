@@ -85,8 +85,9 @@ _roleRoute.post(
   async (req, res, next) => {
     try {
       const { Name, Description, RuleJson } = req.body
+      const CreatedBy = req.user ? req.user.Email : undefined
 
-      const payload = await RoleModel.create({ Name, Description, RuleJson })
+      const payload = await RoleModel.create({ Name, Description, RuleJson, CreatedBy })
       res.json(payload)
 
       next()

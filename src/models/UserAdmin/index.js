@@ -26,6 +26,7 @@ const UserAdminSchema = new mongoose.Schema(
     isForceLogout: { type: Boolean, default: false },
     TokenLast: String,
     TokenDevice: String,
+    
     CreatedBy: String,
     UpdatedBy: String
   },

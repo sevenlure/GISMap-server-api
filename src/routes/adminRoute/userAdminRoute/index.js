@@ -76,13 +76,14 @@ _userAdminRoute.post(
   async (req, res, next) => {
     try {
       const { Email, Password, FullName, IsDisabled, Role } = req.body
+      const CreatedBy = req.user ? req.user.Email : undefined
 
       let user = await UserAdminModel.findOne({
         Email: Email
       })
       if (user) throw new errors.InvalidContentError({ info: { codeName: 'UserEmailExist' } }, `Email is exist!`)
 
-      const payload = await UserAdminModel.create({ Email, Password, FullName, IsDisabled, Role })
+      const payload = await UserAdminModel.create({ Email, Password, FullName, IsDisabled, Role, CreatedBy })
       res.json(payload)
 
       next()

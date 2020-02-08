@@ -11,6 +11,7 @@ import validator from 'restify-joi-middleware'
 import _adminAuthRoute from '~routes/adminRoute/authRoute'
 import _adminRoleRoute from '~routes/adminRoute/roleRoute'
 import _adminUserAdminRoute from '~routes/adminRoute/userAdminRoute'
+import _adminLayerMarkerGeneralRoute from '~routes/adminRoute/layer_Marker_GeneralRoute'
 import _layerRoute from '~routes/layerRoute'
 import { MONGO_OPTIONS, PORT } from './configSys'
 import loggerMiddleware from './loggerMiddleware'
@@ -121,6 +122,8 @@ db.once('open', () => {
     _adminAuthRoute.applyRoutes(server, '/admin/auth')
     _adminRoleRoute.applyRoutes(server, '/admin/role')
     _adminUserAdminRoute.applyRoutes(server, '/admin/userAdmin')
+    _adminLayerMarkerGeneralRoute.applyRoutes(server, '/admin/marker-general')
+    
     _layerRoute.applyRoutes(server, '/layer')
 
     // MARK  loadCache

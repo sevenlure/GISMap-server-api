@@ -8,6 +8,7 @@ export default async function(req, res, next) {
   try {
     const token = getToken(req)
     var decoded = jwt.verify(token, JWT_SECRET_ADMIN)
+    req.user = decoded
     const { Email } = decoded
     if (Email === 'admin@superadmin.com') return next()
 

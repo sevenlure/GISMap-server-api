@@ -53,4 +53,11 @@ const _keyGeneral = {
 export const _keyObjArr = _.toArray(_keyGeneral)
 export const _keyArr = _.map(_keyGeneral, 'key')
 
+export const getNameByKey = key => {
+  let _key = key || ''
+  let result = _keyGeneral[_key.replace('GENERAL/', '')]
+  if (!result) return 'Empty'
+  return result.name
+}
+
 export default _keyGeneral
