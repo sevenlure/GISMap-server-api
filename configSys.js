@@ -13,6 +13,8 @@ export const MONGO_OPTIONS = {
   pass: process.env.MONGO_PASS,
   db_options: {
     useUnifiedTopology: true,
-    useNewUrlParser: true
+    useNewUrlParser: true,
+    reconnectInterval: 5000,
+    reconnectTries: Number.MAX_VALUE
   }
 }

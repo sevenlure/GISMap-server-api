@@ -101,7 +101,7 @@ console.green(`Connecting to mongo ${MONGO_OPTIONS.uri}`)
 mongoose
   .connect(MONGO_OPTIONS.uri, {
     ...confMongo,
-    ...MONGO_OPTIONS.db_options
+    ...MONGO_OPTIONS.db_options,
   })
   .catch(error => console.error(error))
 const db = mongoose.connection
