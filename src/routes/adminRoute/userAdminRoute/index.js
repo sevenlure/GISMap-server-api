@@ -83,7 +83,15 @@ _userAdminRoute.post(
       })
       if (user) throw new errors.InvalidContentError({ info: { codeName: 'UserEmailExist' } }, `Email is exist!`)
 
-      const payload = await UserAdminModel.create({ Email, Password, FullName, IsDisabled, Role, CreatedBy })
+      const payload = await UserAdminModel.create({
+        Email,
+        Password,
+        FullName,
+        IsDisabled,
+        Role,
+        CreatedBy,
+        UpdatedBy: CreatedBy
+      })
       res.json(payload)
 
       next()

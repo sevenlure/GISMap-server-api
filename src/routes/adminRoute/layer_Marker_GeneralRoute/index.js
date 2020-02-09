@@ -153,10 +153,79 @@ _Layer_Marker_GeneralRoute.post(
           MaTP,
           MaPX
         },
-        CreatedBy
+        CreatedBy,
+        UpdatedBy: CreatedBy
       })
 
       res.json(payload)
+
+      next()
+    } catch (err) {
+      next(err)
+    }
+  }
+)
+/* #endregion */
+
+/* #region  POST Create multiple */
+_Layer_Marker_GeneralRoute.post(
+  {
+    path: `/multiple`,
+    validation: {
+      // prettier-ignore
+      schema: {
+          body: Joi.array().items(
+            Joi.object().keys({
+              MarkerName: Joi.string().required(),
+              Y: Joi.number().required(),
+              X: Joi.number().required(),
+              Key: Joi.string().required(),
+              Address: Joi.string(),
+              Tel: Joi.string(),
+              Network: Joi.string(),
+              Website: Joi.string(),
+              Type: Joi.string(),
+              MaQH: Joi.string(),
+              MaTP: Joi.string(),
+              MaPX: Joi.string()
+          }).required()
+        ).required()
+      }
+    }
+  },
+  async (req, res, next) => {
+    try {
+      const dataPost = req.body
+
+      const CreatedBy = req.user ? req.user.Email : undefined
+      const dataCreate = dataPost.map(item => {
+        const { MarkerName, X, Y, Key, Address, Tel, Network, Website, Type, MaQH, MaTP, MaPX } = item
+        return {
+          geometry: {
+            type: 'Point',
+            coordinates: [X, Y]
+          },
+          properties: {
+            MarkerName,
+            X,
+            Y,
+            Key,
+            Address,
+            Tel,
+            Network,
+            Website,
+            Type,
+            MaQH,
+            MaTP,
+            MaPX
+          },
+          CreatedBy,
+          UpdatedBy: CreatedBy
+        }
+      })
+
+      const payload = await Layer_Marker_GeneralModel.create(dataCreate)
+      res.json(`Created ${payload.length} items`)
 
       next()
     } catch (err) {
